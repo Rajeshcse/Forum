@@ -2,12 +2,13 @@
 <div class= "ui main container">
         <div class="ui centered grid container">
                 <div class="nine wide column">
-                        <h2>Register page</h2>
+                        <h2 >Register page</h2>
                         <form class="ui form" action="/register" method ="POST">
-                            <div class="field"><input type="text" name="username"  placeholder="Create new Username"></div>
-                            <div class="field"><input type="Password" name="password" placeholder="Create password"></div>
-                            
-                            <button class="ui primary labeled icon button" ><i class="unlock alternate icon"></i>Sign Up !</button>
+                            <div class="field"><input type="text" placeholder="Enter Email" name="email" required> </div>
+                            <div class="field"><input type="text" name="username"  placeholder="Create new Username" required></div>
+                            <div class="field"><input type="Password"  placeholder="Create password" required></div>
+                            <div class="field"><input type="Password" name="password" placeholder="Re-type password" required></div>
+                            <button class="ui primary labeled icon button" ><i class="sign-in icon"></i>Sign Up !</button>
                         </form>
                     </div> 
         </div>

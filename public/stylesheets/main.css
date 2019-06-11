@@ -2,11 +2,16 @@
     width: 100%;
 }
 
+i.icon.amazon{
+    font-size: 2em;
+}
 
 #delete-form{
     display: inline;
 }
-
+h2{
+    text-align: center; 
+}
 #comment{
     margin-top: 60px;
     line-height: 2.2em;

@@ -2,7 +2,6 @@ var express       = require("express"),
     router        = express.Router(),
     Comment       = require("../models/comment"),
     middleware    = require("../middleware"),
-    
     Campground    = require("../models/campground");
     var multer = require('multer');
     var storage = multer.diskStorage({
@@ -28,21 +27,44 @@ var express       = require("express"),
     
 // INDEX - show all campgrounds
 router.get("/",  function(req, res){
-    Campground.find({}, function(err, allCampgrounds){
-       if(err){
-           console.log(err);
-       } else{
-           res.render("campgrounds/index",{campgrounds:allCampgrounds, currentUser: req.user });
-       }
-    });
+    var noMatch = null;
+    if(req.query.search) {
+        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        // Get all campgrounds from DB
+        Campground.find({name: regex}, function(err, allCampgrounds){
+           if(err){
+               console.log(err);
+           } else {
+              if(allCampgrounds.length < 1) {
+                  noMatch = "No campgrounds match that query, please try again.";
+              }
+              res.render("campgrounds/index",{campgrounds:allCampgrounds, noMatch: noMatch});
+           }
+        });
+    } else {
+        // Get all campgrounds from DB
+        Campground.find({}, function(err, allCampgrounds){
+           if(err){
+               console.log(err);
+           } else {
+              res.render("campgrounds/index",{campgrounds:allCampgrounds, noMatch: noMatch});
+           }
+        });
+    }
 });
 
 
 // CREATE Route- add new campground to the database
 router.post("/", middleware.isLoggedIn, upload.single('image'), function(req, res) {
-    cloudinary.uploader.upload(req.file.path, function(result) {
+    cloudinary.v2.uploader.upload(req.file.path, function(err, result) {
+        if(err) {
+          req.flash('error', err.message);
+          return res.redirect('back');
+        }
         // add cloudinary url for the image to the campground object under image property
         req.body.campground.image = result.secure_url;
+        // add image's public_id to campground object
+        req.body.campground.imageId = result.public_id;
         // add author to campground
         req.body.campground.author = {
           id: req.user._id,
@@ -89,13 +111,28 @@ router.get("/:id/edit",middleware.checkCampgroundOwnership, function(req, res) {
 });
 
 
-router.put("/:id",middleware.checkCampgroundOwnership, function(req, res){
-    Campground.findByIdAndUpdate( req.params.id , req.body.campground , function(err, UpdateCampground){
+router.put("/:id", upload.single('image'), function(req, res){
+    Campground.findById(req.params.id, async function(err, campground){
         if(err){
-            res.redirect("/campgrounds")
-        }else{
-            req.flash("success", "Updated successfully!");
-            res.redirect("/campgrounds/"+ req.params.id );
+            req.flash("error", err.message);
+            res.redirect("back");
+        } else {
+            if (req.file) {
+              try {
+                  await cloudinary.v2.uploader.destroy(campground.imageId);
+                  var result = await cloudinary.v2.uploader.upload(req.file.path);
+                  campground.imageId = result.public_id;
+                  campground.image = result.secure_url;
+              } catch(err) {
+                  req.flash("error", err.message);
+                  return res.redirect("back");
+              }
+            }
+            campground.name = req.body.name;
+            campground.description = req.body.description;
+            campground.save();
+            req.flash("success","Successfully Updated!");
+            res.redirect("/campgrounds/" + campground._id);
         }
     });
 });
@@ -111,5 +148,9 @@ router.delete("/:id",middleware.checkCampgroundOwnership, function(req, res){
         }
     })
 });
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 module.exports= router;

@@ -10,6 +10,7 @@ var express       = require("express"),
     app           = express(),
     methodOverride=require("method-override"),
     seedDB        = require("./seeds");
+    
 var commentRoutes = require("./routes/comments"),
     compgroundRoutes= require("./routes/campgrounds"),
     indexRoutes     = require("./routes/index");
@@ -27,12 +28,14 @@ mongoose.connect("mongodb+srv://rparaman:Geek123@cluster0-zugga.mongodb.net/test
 	console.log('ERROR:', err.message);
 });
 
+
 app.set("view engine","ejs");
 app.use(express.static(__dirname +"/public"));
-//app.use(require('cookie-session'));
 app.use(flash());
 app.use(methodOverride("_method"));
 app.use(bodyParser.urlencoded({extended:true}));
+
+
 
 // passport config
 app.use(require("express-session")({

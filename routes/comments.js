@@ -14,6 +14,7 @@ router.get("/campgrounds/:id/comments/new",middleware.isLoggedIn, function(req, 
     });
 });
 
+
 router.post("/campground/:id/comments",middleware.isLoggedIn,  function(req, res){
     Campground.findById(req.params.id, function(err, campground) {
         if(err){

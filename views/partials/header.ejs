@@ -10,22 +10,25 @@
 
 <div class="ui fixed inverted menu">
     <div class="ui container">
-        <a class="header item"><i class="amazon icon"></i><b>ITB Team Discussion Forum</b> </a>
-        <a class="ui item"  href="/campgrounds">Home</a>
-        <a class="ui item" href="/campgrounds/new">Ask new Question?</a>
+        <a class="header item"><i class="amazon icon"></i><b>ITB Team Discussion Forum </b>   </a>
+        <a class="ui item"  href="/campgrounds">Home </a> 
+        <a class="ui item" href="/campgrounds/new">Ask new  Question? </a> 
          <div class="item">
-          <div class="ui icon input">
-            <input type="text" placeholder="Search...">
-            <i class="search link icon"></i>
-          </div>
+         <form action="/campgrounds" method="GET" class="form-inline">
+            <div class="ui icon input">
+              <input type="text" name="search" placeholder="Search..."  >
+              <i class="search link icon" value="Search"></i>
+            </div>
+        </form>
         </div>
         <div class="right menu">
+
              <% if(!currentUser) { %>
-                  <a href="/login" class="ui item" >Login</a>
+                  <a href="/login" class="ui item" ><i class="unlock alternate icon"></i>Login</a>
                   <a href="/register" class="ui item">Sign Up</a>
                   <% }else{ %>
                   <a href="#" class="ui item">Welcome <%= currentUser.username %></a>
-                  <a href="/logout" class="ui item">Logout</a>
+                  <a href="/logout" class="ui item"><i class="sign-out icon"></i>Logout</a>
               <% } %>
         
       </div>

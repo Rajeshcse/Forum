@@ -1,13 +1,13 @@
-<% include ../partials/header %> 
-<div class="ui main text container ">
+<% include ../partials/header %>
+<div class="ui main text container">
             <div class="ui huge header">Top Questions....</div>
             <% campgrounds.slice().reverse().forEach(function(campground){ %>
                     <div class="ui container segment">
-                        <span><h2><%= campground.name %></h2></span>
+                         <i><h6>Posted by: <b><%= campground.author.username %> </b>on <%= campground.created.toDateString() %></h6></i>
+                        <span><h3><%= campground.name %></h3></span>    
                         <img class="ui top aligned tiny image" src="<%= campground.image %>">
-                        <p><%= campground.description.substring(0,40) %>.........<i><h6>Posted by: <%= campground.author.username %></h6> </i> </p>
                         <a class="ui floated tiny basic violet button" href="/campgrounds/<%= campground._id %>"><b>Show More</b> <i class="right chevron icon"></i></a>
-                    </div>
+                        
+                </div>
             <% })%>
 </div>
-    
