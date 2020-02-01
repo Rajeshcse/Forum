@@ -1,51 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>YelpCamp</title>
-  <link  rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
-  <link rel="stylesheet" href="/stylesheets/main.css">
-</head>
-<body>
-
-<div class="ui fixed inverted menu">
-    <div class="ui container">
-        <a class="header item"><i class="amazon icon"></i><b>ITB Team Discussion Forum </b>   </a>
-        <a class="ui item"  href="/campgrounds">Home </a> 
-        <a class="ui item" href="/campgrounds/new">Ask new  Question? </a> 
-         <div class="item">
-         <form action="/campgrounds" method="GET" class="form-inline">
+  <head>
+    <title>YelpCamp</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css"
+    />
+    <link rel="stylesheet" href="/stylesheets/main.css" />
+  </head>
+  <body>
+    <div class="ui fixed inverted menu">
+      <div class="ui container">
+        <a class="header item"
+          ><i class="amazon icon"></i><b>OP Merics DashBoard </b>
+        </a>
+        <a class="ui item" href="/campgrounds">Home </a>
+        <a class="ui item" href="/campgrounds/new">Create metrics</a>
+        <div class="item">
+          <form action="/campgrounds" method="GET" class="form-inline">
             <div class="ui icon input">
-              <input type="text" name="search" placeholder="Search..."  >
+              <input type="text" name="search" placeholder="Search..." />
               <i class="search link icon" value="Search"></i>
             </div>
-        </form>
+          </form>
         </div>
         <div class="right menu">
-
-             <% if(!currentUser) { %>
-                  <a href="/login" class="ui item" ><i class="unlock alternate icon"></i>Login</a>
-                  <a href="/register" class="ui item">Sign Up</a>
-                  <% }else{ %>
-                  <a href="#" class="ui item">Welcome <%= currentUser.username %></a>
-                  <a href="/logout" class="ui item"><i class="sign-out icon"></i>Logout</a>
-              <% } %>
-        
+          <% if(!currentUser) { %>
+          <a href="/login" class="ui item"
+            ><i class="unlock alternate icon"></i>Login</a
+          >
+          <a href="/register" class="ui item">Sign Up</a>
+          <% }else{ %>
+          <a href="#" class="ui item">Welcome <%= currentUser.username %></a>
+          <a href="/logout" class="ui item"
+            ><i class="sign-out icon"></i>Logout</a
+          >
+          <% } %>
+        </div>
       </div>
     </div>
-</div>
 
-<div class="main container">
-  <% if(error && error.length>0){ %>
-        <div class="alert alert-danger" role="alert">
-          <%=error%> 
-        </div>
-  <% } %>
-  
-  <% if(success && success.length>0){ %>
-        <div class="alert alert-success" role="alert">
-          <%=success%>
-        </div>
-  <% } %>
-</div>
-  
+    <div class="main container">
+      <% if(error && error.length>0){ %>
+      <div class="alert alert-danger" role="alert">
+        <%=error%>
+      </div>
+      <% } %> <% if(success && success.length>0){ %>
+      <div class="alert alert-success" role="alert">
+        <%=success%>
+      </div>
+      <% } %>
+    </div>
+  </body>
+</html>
