@@ -1,51 +1,59 @@
-var express       = require("express"),
-    passport      = require("passport"),
-    User          = require("../models/user"),
-    router        = express.Router();
-    
-router.get("/", function(req,res){
-    res.render("landing");
+var express = require("express");
+var router = express.Router();
+var passport = require("passport");
+var User = require("../models/user");
+
+//root route
+router.get("/", function(req, res) {
+  res.render("landing");
 });
 
-//show sign up form
-router.get("/register", function(req, res){
-   res.render("register"); 
+// show register form
+router.get("/register", function(req, res) {
+  res.render("register");
 });
 
-//handling user sign up
+//handle sign up logic
 router.post("/register", function(req, res) {
-    req.body.username
-    req.body.password
-    User.register(new User({username:req.body.username}), req.body.password, function(err, user){
-            if(err){
-              return res.render("register", {"error": err.message});
-            }
-        passport.authenticate("local")(req, res, function(){
-            req.flash("success", "welcome to yelpcamp! "+ user.username);
-            res.redirect("/campgrounds");
-        });
+  var newUser = new User({ username: req.body.username });
+  if (req.body.adminCode === "alphametrics123") {
+    newUser.isAdmin = true;
+  }
+  User.register(newUser, req.body.password, function(err, user) {
+    if (err) {
+      req.flash("error", err.message);
+      return res.render("register");
+    }
+    passport.authenticate("local")(req, res, function() {
+      req.flash(
+        "success",
+        "Welcome to Team Metrics connections " + user.username
+      );
+      res.redirect("/");
     });
+  });
 });
-// LOGIN ROUTES
-//render login form
-router.get("/login", function(req, res){
-     res.render("login"); 
-});
-//middleware
 
-//login logic
-router.post("/login", passport.authenticate("local", {
-    
-    successRedirect: "/campgrounds",
+//show login form
+router.get("/login", function(req, res) {
+  res.render("login");
+});
+
+//handling login logic
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
     failureRedirect: "/login"
-}) ,function(req, res){
-    
+  }),
+  function(req, res) {}
+);
+
+// logout route
+router.get("/logout", function(req, res) {
+  req.logout();
+  req.flash("success", "Logged you out!");
+  res.redirect("/");
 });
 
-router.get("/logout", function(req, res){
-    req.logout();
-    req.flash("error","logged you out!");
-    res.redirect("/campgrounds");
-});
-
-module.exports= router;
+module.exports = router;

@@ -1,17 +1,6 @@
- 
-<link
-rel="stylesheet"
-type="text/css"
-href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css"
-/>
+    
+<% if(week== "2019-W27" || week== "2019-W28" || week== "2019-W29" || week== "2019-W30" || week== "2019-W31" || week== "2019-W32" || week== "2019-W33" || week== "2019-W34"|| week== "2019-W35"|| week== "2019-W36" || week== "2019-W37" || week== "2019-W38"|| week== "2019-W39" ) { %>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="/stylesheets/main.css" />
-
-<% week= campground.week %>
-
-<% if(week == "2019-W27" || week== "2019-W28" || week== "2019-W29" || week== "2019-W30" || week== "2019-W31" || week== "2019-W32" || week== "2019-W33" || week== "2019-W34"|| week== "2019-W35"|| week== "2019-W36" || week== "2019-W37" || week== "2019-W38"|| week== "2019-W39" ) { %>
   <% week_v1= "596.23" %> <%  week_v2= "46.15"%> <% week_v3= "264.69"%> <% week_v4= "10.15" %> <%  week_v5= "184.61"%> <% week_v6= "6.47"%>  <% week_v7= "85.15"%> <% week_v8= "1572"%> 
    <% week_v9= "127.61"%> <% week_v10= "1005.62"%> <% week_v11= "780" %> <%  week_v12= ""%> <% week_v13= "173"%> <% week_v14= "53.46" %> <%  week_v15= "125.1"%> <% week_v16= "50.76"%>  
    <% week_v17= "262.92"%> <% week_v18= "202.92"%> <% week_v19= "60"%> <% week_v20= "462.92"%>  <% week_v21= "48.46" %> <%  week_v22= "40.07"%> <% week_v23= "374.41"%> <% week_v24= "165.62" %> 
@@ -97,12 +86,10 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
     <% week_hc17= "385"%> <% week_hc18= "285"%> <% week_hc19= "885"%> <% week_hc20= "685"%>  <% week_hc21= "212" %> <%  week_hc22= "432"%> <% week_hc23= "885"%> <% week_hc24= "212" %> 
     <% week_hc25= "432"%> <% week_hc26= "885"%>  <% week_hc27= "385"%> <% week_hc28= "285"%> <% week_hc29= "885"%> <% week_hc30= "685"%> <% week_hc31= "685"%> <% week_hc32= "685"%>               
 <% } %>
-
-
+  
 
 <div  class="show" >
     <script>
-            
             function exportTableToExcel(tableID, filename = ''){
             var downloadLink;
             var dataType = 'application/vnd.ms-excel';
@@ -135,33 +122,19 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
         }
     
     </script>
-     
-    <div class="row ">
-    <div >
-     
     
-      
+    <div class="row">
+    <div>
         <div class="thumbnail">
             <div class="caption-full">
               <caption>
-                <% week= campground.week %> 
-                <a href="/"> 
-                  <button class="ui labeled icon button">
-                    <i class="left arrow icon"></i>
-                    Go Back
-                  </button>
-                </a>
-
-                <h2 class="team " > ITB Team: [ <%= week %> ] </h2>   
- 
-              
+                <% week= campground.week %>
+                <h2 class="team " > ITB Team: [ <%= week %> ]</h2>           
               </caption>
-        <div>
-         
+        <div>    
+          <button class="btn btn-success btn-xs"   onclick="exportTableToExcel('tblData', '<%= week %>')">Export Excel <i class=" download icon"></i>  </i></button> <div><a   href="/"> Go back  </a></div>
         </div>    
-        <button class="btn btn-success btn-xs"  onclick="exportTableToExcel('tblData', '<%= week %>')">Export Excel <i class=" download icon"></i>  </i></button>
-
-             
+        
 <table class="ui celled  striped table " id="myTable">
   <thead>
     <tr>
@@ -188,9 +161,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
         <th>Head Count</th>
         <th>Productivity</th>
         <th>Reason</th>
-         
-        <th>Accuracy in (%)</th>
-         
 
         
 
@@ -273,9 +243,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
       <% } %>
 
       <td><%= campground.couts1 %></td>
-      
-      <td><%= campground.accuracy1 %>%</td>
-      
 
     </tr>
 
@@ -347,7 +314,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
         <% } %>
         <!-- call outs -->
         <td><%= campground.couts2 %></td>
-        <td><%= campground.accuracy2 %>%</td>
     </tr>
     <tr id="demo1" class="collapse">
       <th>Pre-Orders</th>
@@ -417,7 +383,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
       <!-- call outs -->
       <td><%= campground.couts3 %></td>
-      <td><%= campground.accuracy3 %>%</td>
 
     </tr>
 
@@ -489,9 +454,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
         <!-- call outs -->
         <td><%= campground.couts4 %></td>
-        
-        <td><%= campground.accuracy4 %>%</td>
-
     </tr>
 
     <tr id="demo1" class="collapse">
@@ -561,9 +523,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
       <% } %>
       <!-- call outs -->
       <td><%= campground.couts5 %></td>
-      
-      <td><%= campground.accuracy5 %>%</td>
-
     </tr>
 
     <tr id="demo1" class="collapse">
@@ -633,7 +592,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
         <% } %>
         <!-- call outs -->
         <td><%= campground.couts6 %></td>
-        <td><%= campground.accuracy6 %>%</td>
     </tr>
 
     <tr id="demo1" class="collapse">
@@ -703,7 +661,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
         <% } %>
         <!-- call outs -->
           <td><%= campground.couts7 %></td>
-          <td><%= campground.accuracy7 %>%</td>
     </tr>
 
 
@@ -777,7 +734,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
     <% } %>
   <!-- call outs -->
     <td><%= campground.couts8 %></td>
-    <td><%= campground.accuracy8 %>%</td>
     
 
     
@@ -859,7 +815,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
               <% } %>
             <!-- call outs -->           
               <td><%= campground.couts9 %></td>
-              <td><%= campground.accuracy9 %>%</td>
+
   </tr>
 
 
@@ -941,12 +897,12 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
               <% } %>
             <!-- call outs -->           
               <td><%= campground.couts10 %></td>
-              <td><%= campground.accuracy10 %>%</td>
+
        
         <tr id="demo010" class="collapse">
-          <th  >
+          <td  >
             English
-          </th>
+          </td>
           <td><%= week_v11 %></td> 
               <td><%= week_hc11 %></td>
               <td>  
@@ -1011,10 +967,10 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
               <% } %>
             <!-- call outs --> 
               <td><%= campground.couts11 %></td>
-              <td><%= campground.accuracy11 %>%</td>
+          
         </tr>
         <tr id="demo010" class="collapse">
-          <th>English (High-value titles to be considered by Ops)</th>
+          <td >English (High-value titles to be considered by Ops)</td>
           <td><%= week_v12 %></td> 
               <td><%= week_hc12 %></td>
               <td>  
@@ -1079,10 +1035,9 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
               <% } %>
             <!-- call outs --> 
               <td><%= campground.couts12 %></td>
-              <td><%= campground.accuracy12 %>%</td>
         </tr>
         <tr id="demo010" class="collapse">
-          <th >German</th>
+          <td >German</td>
           <td><%= week_v13 %></td> 
               <td><%= week_hc13 %></td>
               
@@ -1150,10 +1105,9 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
             <!-- call outs --> 
               <td><%= campground.couts13 %></td>
-              <td><%= campground.accuracy13 %>%</td>
         </tr>
         <tr id="demo010" class="collapse">
-          <th >French</th>
+          <td >French</td>
           <td><%= week_v14  %></td> 
               <td><%= week_hc14 %></td> 
              
@@ -1220,7 +1174,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
               <% } %>
             <!-- call outs --> 
               <td > <%= campground.couts14 %> </td>
-              <td><%= campground.accuracy14 %>%</td>
         </tr>
        
   </tr>
@@ -1306,7 +1259,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
   <!-- call outs --> 
     <td><%= campground.couts15 %></td>
-    <td><%= campground.accuracy15 %>%</td>
+
 </tr>
 
   <tr id="demo03" class="collapse"> 
@@ -1385,7 +1338,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
             <!-- call outs --> 
               <td><%= campground.couts16 %></td>
-              <td><%= campground.accuracy16 %>%</td>
+
 </tr>
 
 
@@ -1466,9 +1419,8 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
             <!-- call outs --> 
               <td><%= campground.couts17 %></td>
-              <td><%= campground.accuracy17 %>%</td>
 
-                </tr>
+ 
   <tr id="demo011" class="collapse">
     <td class="hiddenRow"><div>Submitted Corrections</div></td>
     <td><%= week_v18  %></td> 
@@ -1542,7 +1494,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
             <!-- call outs --> 
               <td><%= campground.couts18 %></td>
-              <td><%= campground.accuracy18 %>%</td>
   </tr>
   <tr id="demo011" class="collapse">
     <td class="hiddenRow"><div>Queries + Escalations</div></td>
@@ -1611,9 +1562,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
               <% } %>
             <!-- call outs --> 
               <td><%= campground.couts19 %></td>
-              <td><%= campground.accuracy19 %>%</td>
   </tr>
-
  
  
 </tr>
@@ -1622,7 +1571,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
 
         <!-- =======================================   REWORK  ======================================== -->
-        <% week= campground.week %>
+
 
     <tr data-toggle="collapse" data-target="#demo3"  class="ui center aligned header blue" data-parent="#myTable">
       <td >  Rework <i class="right aligned  small dropdown icon "></i> </td>
@@ -1696,7 +1645,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
     <!-- call outs --> 
       <td><%= campground.couts20 %></td>
-      <td><%= campground.accuracy20 %>%</td>
   </tr>
 
     </tr>
@@ -1777,7 +1725,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
           
         <!-- call outs --> 
           <td><%= campground.couts21 %></td>
-          <td><%= campground.accuracy21 %>%</td>
     </tr>
     <tr id="demo3" class="collapse">
       <th>Rework CFQI</th>
@@ -1849,7 +1796,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
         <!-- call outs --> 
           <td><%= campground.couts22 %></td>
-          <td><%= campground.accuracy22 %>%</td>
     </tr>
     <tr id="demo3" class="collapse">
       <th>Rework Non-Blocking</th>
@@ -1921,7 +1867,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
         <!-- call outs --> 
           <td><%= campground.couts23 %></td>
-          <td><%= campground.accuracy23 %>%</td>
     </tr>
 
 
@@ -1934,7 +1879,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
             <b> <%=  fix_Pprod24.toFixed(2) %> </b> 
           </td> 
           
-          <td><b><%= (campground.A_Vol24) %></b></td> 
+          <td><b><%= (campground.A_Vol24).toFixed(2) %></b></td> 
           <td><b><%= campground.A_HCount24 %></b></td>
 
           <td>
@@ -1995,7 +1940,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
         <!-- call outs --> 
           <td><%= campground.couts24 %></td>
-          <td><%= campground.accuracy24 %>%</td>
       </tr>
 
     </tr>
@@ -2073,7 +2017,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
         <!-- call outs --> 
           <td><%= campground.couts25 %></td>
-          <td><%= campground.accuracy25 %>%</td>
     </tr>
     <tr id="demo4" class="collapse">
       <th> Unknown Language</th>
@@ -2149,7 +2092,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
         <!-- call outs --> 
           <td><%= campground.couts26 %></td>
-          <td><%= campground.accuracy26 %>%</td>
     </tr>
     <tr id="demo4" class="collapse">
       <th> Switcheroo </th>
@@ -2222,7 +2164,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
     <!-- call outs --> 
       <td><%= campground.couts27 %></td>
-      <td><%= campground.accuracy27 %>%</td>
     </tr>
     <tr id="demo4" class="collapse">
       <th> Fixed Layout </th>
@@ -2290,7 +2231,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
           <% } %>
         <!-- call outs --> 
           <td><%= campground.couts28 %></td>
-          <td><%= campground.accuracy28 %>%</td>
     </tr>
 
 
@@ -2367,7 +2307,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
         <!-- call outs --> 
           <td><%= campground.couts29 %></td>
-          <td><%= campground.accuracy29 %>%</td>
 
     </tr>
    
@@ -2441,7 +2380,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
         <!-- call outs --> 
           <td><%= campground.couts30 %></td>
-          <td><%= campground.accuracy30 %>%</td>
 
     </tr>
     
@@ -2518,7 +2456,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
     <!-- call outs --> 
       <td><%= campground.couts31 %></td>
-      <td><%= campground.accuracy31 %>%</td>
     </tr>
     
 
@@ -2594,7 +2531,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 
         <!-- call outs --> 
           <td><%= campground.couts32 %></td>
-          <td><%= campground.accuracy32 %>%</td>
     </tr>
    
 
@@ -2603,42 +2539,3 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
     </tbody>
   </table>
   
-    
-        <p>
-            <em>Submitted By <%= campground.author.username %></em>
-        </p>
-        <span><i>Created on :</i><%=  campground.created.toDateString() %></span><br>
-        <% if(currentUser && campground.author.id.equals(currentUser._id)  || currentUser && currentUser.isAdmin ){ %>
-            <a class="btn  btn-warning btn-xs " href="/campgrounds/<%= campground._id %>/edit">Edit <i class="edit icon" > </i> </a>
-            <form id="delete-form" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
-                <button class="btn   btn-danger btn-xs">Delete <i class="trash alternate icon" > </i></button>
-            </form>
-        <% }%>
-            </div>
-        </div>
-    </div>
-    </div>
-</div>
-
-
-
-<script
-src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-crossorigin="anonymous"
-></script>
-
-
-<script
-src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-crossorigin="anonymous"
-></script>
-
-
-<script
-src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-crossorigin="anonymous"
-></script>
-

@@ -1,15 +1,86 @@
-<% include partials/header %>
-<div class= "ui main container">
-        <div class="ui centered grid container">
-                <div class="nine wide column">
-                        <h2 >Register page</h2>
-                        <form class="ui form" action="/register" method ="POST">
-                            <div class="field"><input type="text" placeholder="Enter Email" name="email" required> </div>
-                            <div class="field"><input type="text" name="username"  placeholder="Create new Username" required></div>
-                            <div class="field"><input type="Password"  placeholder="Create password" required></div>
-                            <div class="field"><input type="Password" name="password" placeholder="Re-type password" required></div>
-                            <button class="ui primary labeled icon button" ><i class="sign-in icon"></i>Sign Up !</button>
-                        </form>
-                    </div> 
-        </div>
-</div>
+<% include ./partials/header %>
+
+<script>
+  $(".ui.checkbox").checkbox();
+</script>
+<style>
+  #test {
+    width: 300px;
+  }
+
+  #form-segment {
+    padding-bottom: 22px;
+  }
+
+  #username,
+  #email,
+  #password {
+    margin-top: 9px;
+    text-align: center;
+  }
+</style>
+<!-- <form class="ui form container " action="/register" method="post">
+    <h1>Sign Up Page !</h1>
+    <h3>Create New Account :</h3>
+    
+
+    <input type="text" name="username" placeholder="Create New Username">
+    <hr>
+    <input type="password" name="password" placeholder="Create New password">
+    <hr>
+    <input type="password"  placeholder="Re-Type password">
+    <hr>
+
+    <button class="ui basic blue button large ">Sign Up !</button>
+</form>
+ -->
+
+<center>
+  <form id="test" class="ui form" action="/register" method="post">
+    <h4 class="ui center aligned top attached header">
+      Create Your New Account
+    </h4>
+    <div id="form-segment" class="ui center aligned attached segment">
+      <div class="field">
+        <label for="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="John Doe"
+        />
+      </div>
+      <div class="field">
+        <label for="email">E-mail:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="john@amazon.com"
+        />
+      </div>
+      <div class="field">
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="••••••••"
+        />
+      </div>
+
+      <div class="field">
+        <label for="email">Admin [ Optional ]</label>
+        <input type="text" name="adminCode" placeholder="Admin Code" />
+      </div>
+    </div>
+    <div id="form-message" class="ui attached message">
+      <i class="icon help"></i>
+      Already registered? Please login <a href="/login">here</a>.
+    </div>
+    <button class="ui bottom blue attached fluid button" type="submit">
+      Register <i class="sign-in alternate icon"></i>
+    </button>
+  </form>
+</center>
+<% include ./partials/footer %>

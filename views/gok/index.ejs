@@ -1,5 +1,4 @@
 <% include ../partials/header %>
-
 <div class="container">
 
   <style>
@@ -22,24 +21,22 @@
  
 
   <div class="ui container segment">
-    
-   
-
     <div class=" main text ">
-      <a class="ui blue big button "  href="campgrounds/itbshow">View ITB Metrics >></a>
+      <a class="ui blue big button "  href="gokmetrics/gokshow"> View GOK Metrics >  ></a>
       <div class="ui huge header blue">Recent updates : </div>
       <% campgrounds.slice().reverse().forEach(function(itbMetric){ %> 
       <div class="ui right aligned grid segment">
         <div class="left floated left aligned six wide column">
-          <h4><%= itbMetric.week %><b> | Team : ITB</b></h4>
-          <span>Created by <b><%= itbMetric.author.username %></b> on :<i><%= itbMetric.created.toDateString() %></i></span>
+          <h4><%= itbMetric.week %><b> | Team : <%= itbMetric.team%></b></h4>
+
+          <span>Created by <b><%= itbMetric.author.username %></b> on :
+            <i><%= itbMetric.created.toDateString() %></i></span>
         </div>
         <div class="right floated right aligned six wide column buttons">
           <a
-            class="ui floated tiny basic violet button"
-            href="/campgrounds/<%= itbMetric._id %>"
-            ><b>View More</b> <i class="small right chevron icon"></i
-          ></a>
+            class="ui floated tiny basic violet button" href="/gokmetrics/<%= itbMetric._id %>"><b>View More</b> 
+            <i class="small right chevron icon"></i>
+          </a>
         </div>
       </div>
        <% }) %>
